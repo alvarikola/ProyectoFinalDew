@@ -4,6 +4,7 @@ create table usuarios(
     correo VARCHAR(120) NOT NULL UNIQUE,
     telefono VARCHAR(15) NOT NULL,
     iban VARCHAR(34) NOT NULL,
+    contrasena VARCHAR(50) NOT NULL,
     fecha DATE NOT NULL
 );
 
