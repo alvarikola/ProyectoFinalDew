@@ -21,8 +21,8 @@ create table productos(
 
 INSERT INTO productos (nombre, precio, disponibilidad, categoria, imagen)
 VALUES 
-('Los Pecadores', '20.0', '15', 'Película', '/home/alvaro/Documentos/ProyectoFinalDew/Imagenes/los_pecadores_blue_ray.png'),
-('Cars', '10.0', '7', 'Película', '/home/alvaro/Documentos/ProyectoFinalDew/Imagenes/cars_blu_ray.jpg'),
-('The Amazing Spiderman', '15.0', '12', 'Película', '/home/alvaro/Documentos/ProyectoFinalDew/Imagenes/amazing_spiderman_dvd.png'),
-('Jurassic Park', '12.30', '30', 'Libro', '/home/alvaro/Documentos/ProyectoFinalDew/Imagenes/libro_jurassic_park.jpg'),
-('Cd Thriller Michael Jackson', '25.0', '20', 'Música', '/home/alvaro/Documentos/ProyectoFinalDew/Imagenes/cd_michael_jackson_thriller.jpg');
+('Los Pecadores', '20.0', '15', 'Película', '/Imagenes/los_pecadores_blue_ray.png'),
+('Cars', '10.0', '7', 'Película', '/Imagenes/cars_blu_ray.jpg'),
+('The Amazing Spiderman', '15.0', '12', 'Película', '/Imagenes/amazing_spiderman_dvd.png'),
+('Jurassic Park', '12.30', '30', 'Libro', '/Imagenes/libro_jurassic_park.jpg'),
+('Cd Thriller Michael Jackson', '25.0', '20', 'Música', '/Imagenes/cd_michael_jackson_thriller.jpg');
