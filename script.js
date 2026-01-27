@@ -52,8 +52,8 @@ setInterval(() => {
 function mostrarDatos(productos) {
         productos.forEach(producto => {
         document.querySelector('.nombre').textContent = producto.nombre;
-        document.querySelector('.precio').textContent = "$" + producto.precio;
-        document.querySelector('.disponibilidad').textContent = producto.disponibilidad;
+        document.querySelector('.precio').textContent = producto.precio + "€";
+        document.querySelector('.disponibilidad').textContent = "Stock: " + producto.disponibilidad;
         document.querySelector('.imagenProducto').src = producto.imagen;
     })
     
@@ -76,7 +76,7 @@ function listarProductos() {
         });
 }
 
-recuperarDb();
+listarProductos();
 
 const inputs = document.querySelectorAll('input');
 
@@ -139,3 +139,12 @@ login.addEventListener("click", () => {
 registrar.addEventListener("click", () => {
     
 });
+
+
+const allSlides = document.querySelectorAll(".slide .seleccionable");
+
+allSlides.forEach((slide) => {
+  slide.addEventListener("click", () => {
+    
+  })
+})

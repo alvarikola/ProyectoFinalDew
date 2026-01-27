@@ -114,6 +114,7 @@ input.invalido + p{
   max-width: 600px;
   margin: auto;
   overflow: hidden;
+  margin-top: 50px;
 }
 
 .carousel-track {
@@ -127,6 +128,56 @@ input.invalido + p{
 
 .slide img {
   width: 100%;
-  height: 500px;
+  height: 800px;
   display: block;
+}
+
+/* Página principal */
+#principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+#principal .card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid lightgrey;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+#informacion {
+    margin-left: 20px;
+}
+
+.precio {
+    color: red;
+}
+
+/*Sobre nosotros*/
+#contenedorSobreNosostros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#contenedorSobreNosostros img{
+    width: 40%;
+}
+
+#infoSobreNosotros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#infoSobreNosotros h1{
+    font-size: 60px;
+}
+
+#infoSobreNosotros p{
+    font-size: 20px;
 }
