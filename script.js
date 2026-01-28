@@ -102,44 +102,22 @@ function validate(campo, regex) {
     }
 }
 
-const openLogin = document.getElementById("openLogin");
-const closeLogin = document.getElementById("closeLogin");
-const overlayLogin = document.getElementById("overlayLogin");
-const login = document.getElementById("login")
+const contenedorLogin = document.getElementById('contenedorLogin');
+const contenedorRegistro = document.getElementById('contenedorRegistro');
+const btnMostrarRegistro = document.getElementById('btnMostrarRegistro');
+const btnMostrarLogin = document.getElementById('btnMostrarLogin');
 
-const openRegistrar = document.getElementById("openRegistrar")
-const closeRegistrar = document.getElementById("closeRegistrar");
-const overlayRegistrar = document.getElementById("overlayRegistrar");
-const registrar = document.getElementById("registrar");
+btnMostrarRegistro.addEventListener("click", () => {
+  contenedorLogin.style.display = 'none'
+  contenedorRegistro.style.display = 'flex'
 
+})
 
-openLogin.addEventListener("click", () => {
-    overlayLogin.classList.add("active");
-});
+btnMostrarLogin.addEventListener("click", () => {
+  contenedorLogin.style.display = 'flex'
+  contenedorRegistro.style.display = 'none'
 
-closeLogin.addEventListener("click", () => {
-    overlayLogin.classList.remove("active");
-});
-
-openRegistrar.addEventListener("click", () => {
-    overlayLogin.classList.remove("active");
-    overlayRegistrar.classList.add("active");
-});
-
-closeRegistrar.addEventListener("click", () => {
-    overlayRegistrar.classList.remove("active");
-});
-
-// login.addEventListener("click", login());
-login.addEventListener("click", () => {
-    overlayRegistrar.classList.remove("active");
-});
-
-// funcion para crear un usuario cuando los campos son validos
-registrar.addEventListener("click", () => {
-    
-});
-
+})
 
 const allSlides = document.querySelectorAll(".slide .seleccionable");
 
@@ -148,3 +126,4 @@ allSlides.forEach((slide) => {
     
   })
 })
+

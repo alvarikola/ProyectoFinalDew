@@ -16,7 +16,7 @@
             <button>Inglés</button>
         </div>
         <div id="derecha">
-            <img src="/Imagenes/iconoPerfil.png" alt="perfil" class="icono" id="openLogin">
+            <img src="/Imagenes/iconoPerfil.png" alt="perfil" class="icono">
             <img src="/Imagenes/iconoCarrito.png" alt="carrito" class="icono">
         </div>
     </div>
@@ -43,15 +43,74 @@
     <!-- División 3 Principal -->
 
     <div id="principal">
-        <div class="card">
-            <img class="imagenProducto" src="" alt="imagenProducto">
-            <div id="informacion">
-                <h1 class="nombre"></h1>
-                <h2 class="categoria"></h2>
-                <h2 class="disponibilidad"></h2>
-                <h2 class="precio"></h2>
+
+
+        <!-- Card de producto (se muestra después de hacer login o cuando no se está en login/registro) -->
+        <div id="contenedorProducto" style="display: none;">
+            <div class="card">
+                <img class="imagenProducto" src="" alt="imagenProducto">
+                <div id="informacion">
+                    <h1 class="nombre"></h1>
+                    <h2 class="categoria"></h2>
+                    <h2 class="disponibilidad"></h2>
+                    <h2 class="precio"></h2>
+                    <button id="btnAgregarCarrito" class="btn-agregar">Agregar al carrito</button>
+                </div>
             </div>
         </div>
+
+        <!-- Contenedor de Login (se muestra si no está logueado) -->
+        <div id="contenedorLogin" class="contenedor-auth">
+            <div class="card-auth">
+                <h2>Iniciar Sesión</h2>
+                <input type="text" id="loginNombre" placeholder="Nombre" name="nombre">
+                <p class="error-message">El nombre debe comenzar con mayúscula</p>
+                <input type="password" id="loginContrasena" placeholder="Contraseña" name="contrasena">
+                <p class="error-message">Debe ser una contraseña válida, que contenga al menos 12 dígitos con letras, números y un carácter especial</p>
+                <button id="btnLogin">Iniciar sesión</button>
+                <p class="separator">o</p>
+                <button id="btnMostrarRegistro" class="btn-secondary">Registrarse</button>
+            </div>
+        </div>
+
+        <!-- Contenedor de Registro (se muestra si no está logueado) -->
+        <div id="contenedorRegistro" class="contenedor-auth" style="display: none;">
+            <div class="card-auth">
+                <h2>Registrarse</h2>
+                <input type="text" id="regNombre" placeholder="Nombre" name="nombre">
+                <p class="error-message">El nombre debe comenzar con mayúscula</p>
+                <input type="email" id="regCorreo" placeholder="Correo electrónico" name="correo">
+                <p class="error-message">Debe ser un email válido, ej: name@gmail.com</p>
+                <input type="text" id="regTelefono" placeholder="Teléfono" name="telefono">
+                <p class="error-message">Debe ser un número de teléfono móvil válido, ej: 672 88 88 88</p>
+                <input type="text" id="regIban" placeholder="IBAN" name="iban">
+                <p class="error-message">Debe ser un IBAN válido, ej: ES12345678901234567890</p>
+                <input type="password" id="regContrasena" placeholder="Contraseña" name="contrasena">
+                <p class="error-message">Debe ser una contraseña válida, que contenga al menos 12 dígitos con letras, números y un carácter especial</p>
+                <button id="btnRegistrarse">Registrarse</button>
+                <p class="separator">o</p>
+                <button id="btnMostrarLogin" class="btn-secondary">Volver al inicio de sesión</button>
+            </div>
+        </div>
+
+        <!-- Contenedor de Carrito (se muestra si está logueado) -->
+        <div id="contenedorCarrito" style="display: none;">
+            <div class="card-carrito">
+                <div class="carrito-header">
+                    <h2>Mi Carrito</h2>
+                    <button id="btnCerrarSesion" class="btn-cerrar-sesion">Cerrar Sesión</button>
+                </div>
+                <div id="productosCarrito">
+                    <!-- Los productos del carrito se añadirán aquí dinámicamente -->
+                    <p class="carrito-vacio">Tu carrito está vacío</p>
+                </div>
+                <div class="carrito-total">
+                    <h3>Total: <span id="totalCarrito">0.00€</span></h3>
+                    <button id="btnFinalizarCompra" class="btn-finalizar">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- División 4 Otra información -->
@@ -66,44 +125,7 @@
             <p>Gracias por formar parte de esta comunidad donde las historias, la música y el cine nunca dejan de sonar.</p>
         </div>
     </div>
-
-    <!-- Pop Up Login -->
-    <div id="overlayLogin" class="overlay">
-        <div class="popup">
-            <span id="closeLogin" class="close">&times;</span>
-            <h2>Login</h2>
-
-            <input type="text" placeholder="Nombre" name="nombre">
-            <p>El nombre debe comenzar con mayúscula</p>
-            <input type="password" placeholder="Contraseña" name="contrasena">
-            <p>Debe ser una contraseña válida, que contenga al menos 12 dígitos con letras, números y un carácter especial</p>
-            <button id="login">Iniciar sesión</button>
-            <p>o</p>
-            <button id="openRegistrar">Registrarse</button>
-        </div>
-    </div>
-
-    <!-- Pop Up Registrar -->
-    <div id="overlayRegistrar" class="overlay">
-        <div class="popup">
-            <span id="closeRegistrar" class="close">&times;</span>
-            <h2>Registrarse</h2>
-
-            <input type="text" placeholder="Nombre" name="nombre">
-            <p>El nombre debe comenzar con mayúscula</p>
-            <input type="email" placeholder="Correo electrónico" name="correo">
-            <p>Debe ser un email válido, ej: name@gmail.com</p>
-            <input type="text" placeholder="Teléfono" name="telefono">
-            <p>Debe ser un número de teléfono móvil válido, ej: 672 88 88 88</p>
-            <input type="text" placeholder="IBAN" name="iban">
-            <p>Debe ser un IBAN válido, ej: ES12345678901234567890</p>
-            <input type="password" placeholder="Contraseña" name="contrasena">
-            <p>Debe ser una contraseña válida, que contenga al menos 12 dígitos con letras, números y un carácter especial</p>
-
-            <button id="registrarse">Registrarse</button>
-        </div>
-    </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
