@@ -1,14 +1,13 @@
 .menu {
     display: flex;
-    
-    border: 1px solid red;
+    background-color: #007bff;
+    border-radius: 7px;
 }
 
 #izquierda {
     display: flex;
     justify-content: space-around;
     align-content: center;
-    border: 1px solid blue;
     width: 50%;
     margin-left: 20px;
 }
@@ -17,7 +16,6 @@
     display: flex;
     justify-content: end;
     align-content: center;
-    border: 1px solid green;
     width: 50%;
     margin-right: 20px;
 }
@@ -27,8 +25,45 @@
     margin: 15px;
 }
 
+/* Menú desplegable */
+.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 /* Contenedores de autenticación */
 .contenedor-auth {
+    background-color: #007bff;
+    padding: 20px;
+    border-radius: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -313,6 +348,7 @@ input.invalido + .error-message {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 7px;
 }
 
 #contenedorSobreNosostros img{

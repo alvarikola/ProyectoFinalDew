@@ -48,7 +48,7 @@ setInterval(() => {
 
 
 
-
+// Mostrar datos de todos los productos
 function mostrarDatos(productos) {
         productos.forEach(producto => {
         document.querySelector('.nombre').textContent = producto.nombre;
@@ -76,8 +76,9 @@ function listarProductos() {
         });
 }
 
-listarProductos();
+// listarProductos();
 
+// Funciones para login y registrarse
 const inputs = document.querySelectorAll('input');
 
 // Recorrer los inputs uno por uno
@@ -102,6 +103,7 @@ function validate(campo, regex) {
     }
 }
 
+// Mostrar y ocultar formulario de login y registrar
 const contenedorLogin = document.getElementById('contenedorLogin');
 const contenedorRegistro = document.getElementById('contenedorRegistro');
 const btnMostrarRegistro = document.getElementById('btnMostrarRegistro');
@@ -119,11 +121,40 @@ btnMostrarLogin.addEventListener("click", () => {
 
 })
 
-const allSlides = document.querySelectorAll(".slide .seleccionable");
+// Seleccionar producto desde el carrusel
+const allSlides = document.querySelectorAll(".slide.seleccionable");
 
 allSlides.forEach((slide) => {
   slide.addEventListener("click", () => {
-    
+    console.log("clicada imagen: " + slide.id)
+
   })
 })
 
+function obtenerProducto(producto) {
+  fetch(`index.php?action=obtener`)
+    .then(response => {
+      if(!response.ok) {
+        throw new Error('Error en la respuesta del servidor');
+      }
+      return response.json();
+    })
+    .then(data => {
+      mostrarProducto(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+const contenedorProducto = document.getElementById('contenedorProducto');
+
+// Mostrar datos del producto seleccionado
+function mostrarProducto(producto) {
+  contenedorProducto.style.display = 'flex';
+  document.querySelector('.nombre').textContent = producto.nombre;
+  document.querySelector('.categoria').textContent = producto.categoria;
+  document.querySelector('.precio').textContent = producto.precio + "€";
+  document.querySelector('.disponibilidad').textContent = "Stock: " + producto.disponibilidad;
+  document.querySelector('.imagenProducto').src = producto.imagen;
+}
