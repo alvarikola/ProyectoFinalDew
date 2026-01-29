@@ -127,12 +127,12 @@ const allSlides = document.querySelectorAll(".slide.seleccionable");
 allSlides.forEach((slide) => {
   slide.addEventListener("click", () => {
     console.log("clicada imagen: " + slide.id)
-
+    obtenerProducto(slide.id)
   })
 })
 
-function obtenerProducto(producto) {
-  fetch(`index.php?action=obtener`)
+function obtenerProducto(id) {
+  fetch(`index.php?action=obtener&id=${id}`)
     .then(response => {
       if(!response.ok) {
         throw new Error('Error en la respuesta del servidor');
@@ -158,3 +158,13 @@ function mostrarProducto(producto) {
   document.querySelector('.disponibilidad').textContent = "Stock: " + producto.disponibilidad;
   document.querySelector('.imagenProducto').src = producto.imagen;
 }
+
+// Seleccionar producto desde el menu
+const allLi = document.querySelectorAll(".dropdown-content li");
+
+allLi.forEach((li) => {
+  li.addEventListener("click", () => {
+    console.log("clicado li: " + li.id)
+    obtenerProducto(li.id)
+  })
+})

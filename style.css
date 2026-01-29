@@ -4,6 +4,14 @@
     border-radius: 7px;
 }
 
+.menu a{
+    color: black;
+    text-decoration: none;
+}
+.menu h2:hover, h2 a:hover{
+    color: #f1f1f1;
+}
+
 #izquierda {
     display: flex;
     justify-content: space-around;
@@ -45,9 +53,7 @@
 }
 
 .dropdown-content a {
-    color: black;
     padding: 12px 16px;
-    text-decoration: none;
     display: block;
 }
 
@@ -321,6 +327,7 @@ input.invalido + .error-message {
 /* Página principal */
 #principal {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 100px;
@@ -332,7 +339,7 @@ input.invalido + .error-message {
     justify-content: center;
     border: 3px solid lightgrey;
     border-radius: 15px;
-    padding: 20px;
+    padding: 15px;
 }
 
 #informacion {
@@ -341,6 +348,21 @@ input.invalido + .error-message {
 
 .precio {
     color: red;
+}
+
+#contenedorProducto {
+    margin-bottom: 20px;
+}
+
+#contenedorProducto .card {
+    width: 800px;
+    height: 525px;
+
+}
+
+#contenedorProducto .imagenProducto {
+    width: 350px;
+
 }
 
 /*Sobre nosotros*/
