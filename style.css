@@ -28,6 +28,12 @@
     margin-right: 20px;
 }
 
+#derecha #contenedorUsuario{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 .icono {
     width: 50px;
     margin: 15px;

@@ -26,7 +26,10 @@
             <button>Inglés</button>
         </div>
         <div id="derecha">
-            <a href=""><img src="/Imagenes/iconoPerfil.png" alt="perfil" class="icono"></a>
+            <div id="contenedorUsuario">
+                <a href="#principal"><img src="/Imagenes/iconoPerfil.png" alt="perfil" class="icono"></a>
+                <h3 id="nombreUsuario"></h3>
+            </div>
             <a href=""><img src="/Imagenes/iconoCarrito.png" alt="carrito" class="icono"></a>
         </div>
     </div>
@@ -73,8 +76,8 @@
         <div id="contenedorLogin" class="contenedor-auth">
             <div class="card-auth">
                 <h2>Iniciar Sesión</h2>
-                <input type="text" id="loginNombre" placeholder="Nombre" name="nombre">
-                <p class="error-message">El nombre debe comenzar con mayúscula</p>
+                <input type="email" id="loginCorreo" placeholder="Correo electrónico" name="correo">
+                <p class="error-message">Debe ser un email válido, ej: name@gmail.com</p>
                 <input type="password" id="loginContrasena" placeholder="Contraseña" name="contrasena">
                 <p class="error-message">Debe ser una contraseña válida, que contenga al menos 12 dígitos con letras, números y un carácter especial</p>
                 <button id="btnLogin">Iniciar sesión</button>

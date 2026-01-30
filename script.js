@@ -2,8 +2,7 @@
 const patterns = {
     nombre: /^[A-ZÁÉÍÓÚÜ][a-záéíóúü\d]+$/,
     correo: /^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}$/,
-    telefono: /^([89]\d{2}(\s?\d{2}){3})$/,
-    movil: /^([67]\d{2}(\s?\d{2}){3})$/,
+    telefono: /^([67]\d{2}(\s?\d{2}){3})$/,
     iban: /[a-zA-Z]{2}[0-9]{20}$/,
     contrasena: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$?¡_\-\*])[A-Za-z\d@$?¡_\-\*]{12,}$/
 };
@@ -168,3 +167,105 @@ allLi.forEach((li) => {
     obtenerProducto(li.id)
   })
 })
+
+const inputNombreRegistro = document.getElementById('regNombre');
+const inputCorreoRegistro = document.getElementById('regCorreo');
+const inputTelefonoRegistro = document.getElementById('regTelefono');
+const inputIbanRegistro = document.getElementById('regIban');
+const inputContrasenaRegistro = document.getElementById('regContrasena');
+
+
+const btnRegistrarse = document.getElementById('btnRegistrarse');
+btnRegistrarse.addEventListener("click", () => {
+  registrar()
+})
+
+
+function registrar() {
+  if (inputNombreRegistro.classList.contains('valido') && inputCorreoRegistro.classList.contains('valido') && inputTelefonoRegistro.classList.contains('valido') && inputIbanRegistro.classList.contains('valido') && inputContrasenaRegistro.classList.contains('valido')) {
+    // Crear FormData con los datos
+    const formData = new FormData();
+    formData.append('action', 'registrar');
+    formData.append('nombre', inputNombreRegistro.value.trim());
+    formData.append('correo', inputCorreoRegistro.value.trim());
+    formData.append('telefono', inputTelefonoRegistro.value.trim().replace(/\s/g, '')); // Eliminar espacios
+    formData.append('iban', inputIbanRegistro.value.trim().toUpperCase()); // IBAN en mayúsculas
+    formData.append('contrasena', inputContrasenaRegistro.value);
+
+    fetch('index.php', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => {
+        if(!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          alert('¡Registro exitoso! ' + data.message);
+          
+          // Limpiar formulario
+          inputNombreRegistro.value = '';
+          inputCorreoRegistro.value = '';
+          inputTelefonoRegistro.value = '';
+          inputIbanRegistro.value = '';
+          inputContrasenaRegistro.value = '';
+
+          // Limpiar clases de validación
+          inputNombreRegistro.className = '';
+          inputCorreoRegistro.className = '';
+          inputTelefonoRegistro.className = '';
+          inputIbanRegistro.className = '';
+          inputContrasenaRegistro.className = '';
+          
+          // Volver al login
+          btnMostrarLogin.click();
+        } else {
+          alert('Error: ' + data.error);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error de conexión: ' + error.message);
+      });
+  }
+}
+
+const inputCorreoLogin = document.getElementById('loginCorreo');
+const inputContrasenaLogin = document.getElementById('loginContrasena');
+const nombreUsuario = document.getElementById('nombreUsuario');
+
+const btnLogin = document.getElementById('btnLogin');
+btnLogin.addEventListener("click", () => {
+  if (inputCorreoLogin.classList.contains('valido') && inputContrasenaLogin.classList.contains('valido')) {
+    login(inputCorreoLogin.value.trim())
+  }
+})
+
+function login(correo) {
+  fetch(`index.php?action=login&correo=${encodeURIComponent(correo)}`)
+    .then(response => {
+      if(!response.ok) {
+        throw new Error('Error en la respuesta del servidor');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        alert("Login realizado con éxito");
+        mostrarLogin(data.usuario);
+      } else {
+        alert('Error: ' + data.error);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error de conexión: ' + error.message);
+    });
+}
+
+function mostrarLogin(usuario) {
+  nombreUsuario.textContent = usuario.nombre;
+}
