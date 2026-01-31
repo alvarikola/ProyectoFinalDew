@@ -172,11 +172,17 @@ input.invalido + .error-message {
 }
 
 /* Estilos del carrito */
+
+#contenedorCarrito {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .card-carrito {
+    width: 60%;
     background: white;
     padding: 30px;
-    width: 90%;
-    max-width: 800px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     border: 2px solid #e0e0e0;
@@ -303,6 +309,21 @@ input.invalido + .error-message {
 
 .btn-finalizar:hover {
     background: #218838;
+}
+
+.btn-vaciar-carrito {
+    padding: 8px 15px;
+    background: #ffc107;
+    border: none;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.btn-vaciar-carrito:hover {
+    background: #e0a800;
 }
 
 

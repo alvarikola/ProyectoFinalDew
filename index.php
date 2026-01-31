@@ -30,7 +30,11 @@ switch ($action) {
         
     case 'login':
         login($conn);
-        break;    
+        break; 
+        
+    case 'comprar':
+        comprar($conn);
+        break; 
     
     default:
         echo json_encode(["error" => "Acción no válida"]);
@@ -152,7 +156,50 @@ function login($conn) {
 }
 
 function comprar($conn) {
-
+    // Obtener datos del POST
+    $data = json_decode(file_get_contents('php://input'), true);
+    $productos = $data['productos'] ?? [];
+    
+    // Iniciar transacción
+    $conn->begin_transaction();
+    
+    try {
+        // Recorrer cada producto del carrito
+        foreach ($productos as $producto) {
+            $producto_id = $producto['id'];
+            $cantidad_comprada = $producto['cantidad'];
+            
+            // Obtener stock actual
+            $stmt = $conn->prepare("SELECT disponibilidad FROM productos WHERE id = ?");
+            $stmt->bind_param("i", $producto_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $stock_actual = $row['disponibilidad'];
+            
+            // Actualizar la disponibilidad
+            $nuevo_stock = $stock_actual - $cantidad_comprada;
+            $stmt = $conn->prepare("UPDATE productos SET disponibilidad = ? WHERE id = ?");
+            $stmt->bind_param("ii", $nuevo_stock, $producto_id);
+            $stmt->execute();
+            
+            $stmt->close();
+        }
+        
+        // Confirmar la transacción
+        $conn->commit();
+        
+        echo json_encode([
+            "success" => true,
+            "message" => "Compra realizada con éxito"
+        ]);
+        
+    } catch (Exception $e) {
+        // Revertir la transacción en caso de error
+        $conn->rollback();
+        
+        echo json_encode(["error" => $e->getMessage()]);
+    }
 }
 
 $conn->close();

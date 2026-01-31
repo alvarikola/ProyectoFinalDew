@@ -114,10 +114,20 @@
                     <button id="btnCerrarSesion" class="btn-cerrar-sesion">Cerrar Sesión</button>
                 </div>
                 <div id="productosCarrito">
-                    <!-- Los productos del carrito se añadirán aquí dinámicamente -->
-                    <p class="carrito-vacio">Tu carrito está vacío</p>
+                    <p id="carritoVacio" class="carrito-vacio">Tu carrito está vacío</p>
+
+                    <div id="itemCarritoTemplate" class="item-carrito" style="display: none;">
+                        <img class="img-item-carrito" src="" alt="">
+                        <div class="item-info">
+                            <h3 class="nombre-item-carrito"></h3>
+                            <p class="cantidad-item-carrito"></p>
+                        </div>
+                        <span class="item-precio"></span>
+                        <button class="btn-eliminar">Eliminar</button>
+                    </div>
                 </div>
                 <div class="carrito-total">
+                    <button id="btnVaciarCarrito" class="btn-vaciar-carrito">Vaciar Carrito</button>
                     <h3>Total: <span id="totalCarrito">0.00€</span></h3>
                     <button id="btnFinalizarCompra" class="btn-finalizar">Finalizar Compra</button>
                 </div>

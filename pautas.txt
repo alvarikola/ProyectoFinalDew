@@ -19,7 +19,7 @@ Debe tener al menos cuatro divisiones, con las siguientes funciones:
 
 2.4) Registrarse/Iniciar sesión: Nos permite registrarnos o iniciar sesión en la web (usando sessionstorage).✅
 
-2.5) Carrito: Muestra el contenido de nuestro carrito de compras en la División Principal y confirma o cancela el pedido. (usando localstorage)
+2.5) Carrito: Muestra el contenido de nuestro carrito de compras en la División Principal y confirma o cancela el pedido. (usando localstorage)✅
 
 2.6) Idioma: Permite cambiar los idiomas de español a inglés (o más).
 
