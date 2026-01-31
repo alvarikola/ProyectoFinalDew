@@ -24,45 +24,45 @@ Debe tener al menos cuatro divisiones, con las siguientes funciones:
 2.6) Idioma: Permite cambiar los idiomas de español a inglés (o más).
 
 3) DIVISIÓN DE PRODUCTOS(1p):
-3.1) Al menos cinco productos se deslizan automáticamente cada ciertos segundos.
+3.1) Al menos cinco productos se deslizan automáticamente cada ciertos segundos.✅
 
-3.2) Al hacer clic en un producto, la información se muestra en la división principal.
+3.2) Al hacer clic en un producto, la información se muestra en la división principal.✅
 
-3.3) La información debe provenir de una base de datos en un servidor (imagen, nombre, descripción, precio, disponibilidad...)
+3.3) La información debe provenir de una base de datos en un servidor (imagen, nombre, descripción, precio, disponibilidad...)✅
 
 4) DIVISIÓN PRINCIPAL (1p)
-4.1) Muestra información individual de productos recomendados. Solo podemos agregar el producto al carrito desde allí.
+4.1) Muestra información individual de productos recomendados. Solo podemos agregar el producto al carrito desde allí.✅
 
-4.2) Muestra contenidos del carrito de compras con sus precios y cantidades con el precio TOTAL. Solo podemos descartar productos desde allí.
+4.2) Muestra contenidos del carrito de compras con sus precios y cantidades con el precio TOTAL. Solo podemos descartar productos desde allí.✅
 
 4.3) Muestra una lista de otros productos.
 
-4.4) Muestra el formulario de inicio de sesión.
+4.4) Muestra el formulario de inicio de sesión.✅
 
 5) DIVISIÓN FINAL(0,25p)
-5.1) Información de derechos de autor y otros (dirección de la compañía, correo electrónico, número de teléfono)
+5.1) Información de derechos de autor y otros (dirección de la compañía, correo electrónico, número de teléfono) ✅
 
-6) FORMULARIO utilizando al menos 5 campos con una expresión regular para cada uno.(1p)
+6) FORMULARIO utilizando al menos 5 campos con una expresión regular para cada uno.(1p)✅
 
-6.1) Nombre, Id, correo electrónico, cuenta bancaria, número de teléfono
+6.1) Nombre, Id, correo electrónico, cuenta bancaria, número de teléfono✅
 
-7) USAR AJAX para recuperar información del servidor. Debe incluir al menos una BASE DE DATOS con dos TABLAS (una para productos y otra para clientes)(2p)
+7) USAR AJAX para recuperar información del servidor. Debe incluir al menos una BASE DE DATOS con dos TABLAS (una para productos y otra para clientes)(2p) ✅
 El servidor puede ser cualquiera de tu elección usando PHP y MySQL y debe incluir:
 
-7.1) Primera tabla para los productos (mínimo de ellos con nombre, precio, disponibilidad e imagen). 
+7.1) Primera tabla para los productos (mínimo de ellos con nombre, precio, disponibilidad e imagen). ✅
 
-7.2) Segunda tabla para usuario con nombre, id como clave, la fecha y otros datos del formulario de inscripción. 
+7.2) Segunda tabla para usuario con nombre, id como clave, la fecha y otros datos del formulario de inscripción. ✅
 
 8) USAR, al menos una vez, cada una  de las siguientes caracterísitcas de VueJS3:(2p)
 
-8.1) Crear al menos un componente usando Plantillas (Ver ejemplo en codepen 8) 
+8.1) Crear al menos un componente usando Plantillas (Ver ejemplo en codepen 8) ✅
 
-8.2)  Usar cada una de las directivas (v-if, v-for, v-bind, v-on, v-model) 
+8.2)  Usar cada una de las directivas (v-if, v-for, v-bind, v-on, v-model) ✅
 
-8.3) Usar datos y propiedades calculadas 
+8.3) Usar datos y propiedades calculadas ✅
 
-8.4)  Usar eventos con métodos
+8.4)  Usar eventos con métodos ✅
 
-8.5)  Usar CSS dinámico.
+8.5)  Usar CSS dinámico. ✅
 
-9) El código está bien comentado, indentado y optimizado y experiencia de usuario. (0,75p)
+9) El código está bien comentado, indentado y optimizado y experiencia de usuario. (0,75p) ✅

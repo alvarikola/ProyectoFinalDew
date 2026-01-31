@@ -323,7 +323,13 @@ const itemCarritoTemplate = document.getElementById('itemCarritoTemplate');
 let productoActual = null; // Variable para guardar el producto actual
 
 btnAgregarCarrito.addEventListener("click", () => {
-  agregarAlCarrito(productoActual);
+  const usuario = sessionStorage.getItem('usuario');
+  if(usuario) {
+    agregarAlCarrito(productoActual);
+  }
+  else {
+    alert("Necesitas iniciar sesión para comprar productos");
+  }
 })
 
 // Función para agregar producto al carrito
