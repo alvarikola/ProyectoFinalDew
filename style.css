@@ -24,6 +24,15 @@
     margin-left: 20px;
 }
 
+#logo {
+    display: flex;
+    height: 100%;
+}
+
+#logo img {
+    width: 60px;
+}
+
 #derecha {
     display: flex;
     justify-content: end;
