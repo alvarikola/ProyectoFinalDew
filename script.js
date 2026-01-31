@@ -236,16 +236,29 @@ function registrar() {
 const inputCorreoLogin = document.getElementById('loginCorreo');
 const inputContrasenaLogin = document.getElementById('loginContrasena');
 const nombreUsuario = document.getElementById('nombreUsuario');
+const contenedorCarrito = document.getElementById('contenedorCarrito');
+
+// Verificar sesión al cargar
+const usuarioGuardado = sessionStorage.getItem('usuario');
+if (usuarioGuardado) {
+  const usuario = JSON.parse(usuarioGuardado);
+  nombreUsuario.textContent = usuario.nombre;
+  contenedorLogin.style.display = 'none';
+  contenedorCarrito.style.display = 'flex';
+}
 
 const btnLogin = document.getElementById('btnLogin');
 btnLogin.addEventListener("click", () => {
   if (inputCorreoLogin.classList.contains('valido') && inputContrasenaLogin.classList.contains('valido')) {
-    login(inputCorreoLogin.value.trim())
+    login()
   }
 })
 
-function login(correo) {
-  fetch(`index.php?action=login&correo=${encodeURIComponent(correo)}`)
+function login() {
+  const correo = inputCorreoLogin.value.trim()
+  const contrasena = inputContrasenaLogin.value.trim();
+  
+  fetch(`index.php?action=login&correo=${encodeURIComponent(correo)}&contrasena=${encodeURIComponent(contrasena)}`)
     .then(response => {
       if(!response.ok) {
         throw new Error('Error en la respuesta del servidor');
@@ -256,6 +269,7 @@ function login(correo) {
       if (data.success) {
         alert("Login realizado con éxito");
         mostrarLogin(data.usuario);
+
       } else {
         alert('Error: ' + data.error);
       }
@@ -267,5 +281,26 @@ function login(correo) {
 }
 
 function mostrarLogin(usuario) {
-  nombreUsuario.textContent = usuario.nombre;
+  const usuarioLogeado = {
+    id: usuario.id,
+    nombre: usuario.nombre,
+    correo: usuario.correo,
+};
+  sessionStorage.setItem('usuario', JSON.stringify(usuarioLogeado));
+
+  // Recuperar del sessionStorage
+  const usuarioGuardado = JSON.parse(sessionStorage.getItem('usuario'));
+  nombreUsuario.textContent = usuarioGuardado.nombre;
+
+  // Limpiar formulario
+  inputCorreoLogin.value = '';
+  inputContrasenaLogin.value = '';
+
+  // Limpiar clases de validación
+  inputCorreoLogin.className = '';
+  inputContrasenaLogin.className = '';
+
+  // Mostrar carrito y ocultar login
+  contenedorLogin.style.display = 'none';
+  contenedorCarrito.style.display = 'flex';
 }

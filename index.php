@@ -120,23 +120,28 @@ function registrar($conn) {
 
 function login($conn) {
     $correo = $_GET['correo'] ?? null;
+    $contrasena = $_GET['contrasena'] ?? null;
     
-    if (!$correo) {
-        echo json_encode(["error" => "Correo requerido"]);
+    if (!$correo || !$contrasena) {
+        echo json_encode(["error" => "Correo y contraseña requeridos"]);
         return;
     }
     
-    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE correo = ?");
-    $stmt->bind_param("s", $correo);
+    // Consulta SQL que verifica correo Y contraseña
+    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE correo = ? AND contrasena = ?");
+    $stmt->bind_param("ss", $correo, $contrasena);
     $stmt->execute();
     $result = $stmt->get_result();
     
     if ($result->num_rows === 0) {
-        echo json_encode(["error" => "Usuario no encontrado"]);
+        echo json_encode(["error" => "Credenciales incorrectas"]);
         return;
     }
     
     $usuario = $result->fetch_assoc();
+    
+    // No enviar la contraseña al cliente
+    unset($usuario['contrasena']);
     
     echo json_encode([
         "success" => true,
@@ -144,6 +149,9 @@ function login($conn) {
     ]);
     
     $stmt->close();
+}
+
+function comprar($conn) {
 
 }
 
