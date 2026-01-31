@@ -52,7 +52,7 @@ function mostrarDatos(productos) {
         productos.forEach(producto => {
         document.querySelector('.nombre').textContent = producto.nombre;
         document.querySelector('.precio').textContent = producto.precio + "€";
-        document.querySelector('.disponibilidad').textContent = "Stock: " + producto.disponibilidad;
+        document.querySelector('.disponibilidad').textContent = obtenerTraduccion('stock') + ": " + producto.disponibilidad;
         document.querySelector('.imagenProducto').src = producto.imagen;
     })
     
@@ -155,7 +155,7 @@ function mostrarProducto(producto) {
   document.querySelector('.nombre').textContent = producto.nombre;
   document.querySelector('.categoria').textContent = producto.categoria;
   document.querySelector('.precio').textContent = producto.precio + "€";
-  document.querySelector('.disponibilidad').textContent = "Stock: " + producto.disponibilidad;
+  document.querySelector('.disponibilidad').textContent = obtenerTraduccion('stock') + ": " + producto.disponibilidad;
   document.querySelector('.imagenProducto').src = producto.imagen;
 }
 
@@ -205,7 +205,7 @@ function registrar() {
       })
       .then(data => {
         if (data.success) {
-          alert('¡Registro exitoso! ' + data.message);
+          alert(obtenerTraduccion('alertaRegistroExitoso') + ' ' + data.message);
           
           // Limpiar formulario
           inputNombreRegistro.value = '';
@@ -224,12 +224,12 @@ function registrar() {
           // Volver al login
           btnMostrarLogin.click();
         } else {
-          alert('Error: ' + data.error);
+          alert(obtenerTraduccion('alertaError') + ' ' + data.error);
         }
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('Error de conexión: ' + error.message);
+        alert(obtenerTraduccion('alertaErrorConexion') + ' ' + error.message);
       });
   }
 }
@@ -268,16 +268,16 @@ function login() {
     })
     .then(data => {
       if (data.success) {
-        alert("Login realizado con éxito");
+        alert(obtenerTraduccion('alertaLoginExitoso'));
         mostrarLogin(data.usuario);
 
       } else {
-        alert('Error: ' + data.error);
+        alert(obtenerTraduccion('alertaError') + ' ' + data.error);
       }
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('Error de conexión: ' + error.message);
+      alert(obtenerTraduccion('alertaErrorConexion') + ' ' + error.message);
     });
 }
 
@@ -308,7 +308,7 @@ function mostrarLogin(usuario) {
 
 const btnCerrarSesion = document.getElementById('btnCerrarSesion');
 btnCerrarSesion.addEventListener("click", () => {
-  alert("Cierre de sesión realizado con éxito");
+  alert(obtenerTraduccion('alertaCerrarSesion'));
   sessionStorage.removeItem('usuario');
   location.reload();
 })
@@ -328,7 +328,7 @@ btnAgregarCarrito.addEventListener("click", () => {
     agregarAlCarrito(productoActual);
   }
   else {
-    alert("Necesitas iniciar sesión para comprar productos");
+    alert(obtenerTraduccion('alertaNecesitaLogin'));
   }
 })
 
@@ -345,7 +345,7 @@ function agregarAlCarrito(producto) {
     if (productoExistente.cantidad < producto.disponibilidad) {
       productoExistente.cantidad++;
     } else {
-      alert(`No hay más stock disponible de ${producto.nombre}. Stock máximo: ${producto.disponibilidad}`);
+      alert(`${obtenerTraduccion('alertaSinStock')} ${producto.nombre}. ${obtenerTraduccion('alertaStockMaximo')} ${producto.disponibilidad}`);
       return;
     }
   } else {
@@ -360,7 +360,7 @@ function agregarAlCarrito(producto) {
         stockMaximo: producto.disponibilidad
       });
     } else {
-      alert('Producto sin stock disponible');
+      alert(obtenerTraduccion('alertaSinStockDisponible'));
       return;
     }
   }
@@ -407,11 +407,12 @@ function mostrarCarrito() {
     nuevoItem.querySelector('.img-item-carrito').src = item.imagen;
     nuevoItem.querySelector('.img-item-carrito').alt = item.nombre;
     nuevoItem.querySelector('.nombre-item-carrito').textContent = item.nombre;
-    nuevoItem.querySelector('.cantidad-item-carrito').textContent = `Cantidad: ${item.cantidad}`;
+    nuevoItem.querySelector('.cantidad-item-carrito').textContent = `${obtenerTraduccion('cantidad')}: ${item.cantidad}`;
     nuevoItem.querySelector('.item-precio').textContent = `${item.precio}€`;
     
     // Agregar evento al botón eliminar
     const btnEliminar = nuevoItem.querySelector('.btn-eliminar');
+    btnEliminar.textContent = obtenerTraduccion('eliminar');
     btnEliminar.addEventListener('click', () => {
       eliminarDelCarrito(item.id);
     });
@@ -431,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Evento para vaciar todo el carrito
 btnVaciarCarrito.addEventListener("click", () => {
-  if (confirm('¿Estás seguro de que quieres vaciar todo el carrito?')) {
+  if (confirm(obtenerTraduccion('alertaConfirmarVaciarCarrito'))) {
     vaciarCarrito();
   }
 });
@@ -440,7 +441,7 @@ btnVaciarCarrito.addEventListener("click", () => {
 function vaciarCarrito() {
   localStorage.removeItem('carrito');
   mostrarCarrito();
-  alert('Carrito vaciado');
+  alert(obtenerTraduccion('alertaCarritoVaciado'));
 }
 
 // Función para eliminar una unidad de un producto del carrito
@@ -473,7 +474,7 @@ function finalizarCompra() {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   
   // Confirmar la compra
-  if (!confirm('¿Confirmar la compra?')) {
+  if (!confirm(obtenerTraduccion('alertaConfirmarCompra'))) {
     return;
   }
   
@@ -495,16 +496,16 @@ function finalizarCompra() {
   })
   .then(data => {
     if (data.success) {
-      alert('¡Compra realizada con éxito!');
+      alert(obtenerTraduccion('alertaCompraExitosa'));
       // Vaciar el carrito
       localStorage.removeItem('carrito');
       mostrarCarrito();
     } else {
-      alert('Error al procesar la compra: ' + data.error);
+      alert(obtenerTraduccion('alertaErrorCompra') + ' ' + data.error);
     }
   })
   .catch(error => {
     console.error('Error:', error);
-    alert('Error de conexión: ' + error.message);
+    alert(obtenerTraduccion('alertaErrorConexion') + ' ' + error.message);
   });
 }

@@ -11,7 +11,7 @@ Debe tener al menos cuatro divisiones, con las siguientes funciones:
 1.4) División de otra información.✅
 
 2) DIVISIÓN DE MENÚ con un LOGO que debe ofrecer las siguientes opciones: (1p)
-2.1) Inicio: Un enlace que recarga la web inicial.
+2.1) Inicio: Un enlace que recarga la web inicial.✅
 
 2.2) Productos: Muestra en la División Principal una lista de al menos cinco productos (menú desplegable)✅
 
@@ -21,7 +21,7 @@ Debe tener al menos cuatro divisiones, con las siguientes funciones:
 
 2.5) Carrito: Muestra el contenido de nuestro carrito de compras en la División Principal y confirma o cancela el pedido. (usando localstorage)✅
 
-2.6) Idioma: Permite cambiar los idiomas de español a inglés (o más).
+2.6) Idioma: Permite cambiar los idiomas de español a inglés (o más). ✅
 
 3) DIVISIÓN DE PRODUCTOS(1p):
 3.1) Al menos cinco productos se deslizan automáticamente cada ciertos segundos.✅
