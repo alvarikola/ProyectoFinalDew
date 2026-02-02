@@ -45,19 +45,6 @@ setInterval(() => {
   }
 }, DELAY);
 
-
-
-// Mostrar datos de todos los productos
-function mostrarDatos(productos) {
-        productos.forEach(producto => {
-        document.querySelector('.nombre').textContent = producto.nombre;
-        document.querySelector('.precio').textContent = producto.precio + "€";
-        document.querySelector('.disponibilidad').textContent = obtenerTraduccion('stock') + ": " + producto.disponibilidad;
-        document.querySelector('.imagenProducto').src = producto.imagen;
-    })
-    
-}
-
 // Función para recuperar todos los productos
 function listarProductos() {
     fetch(`index.php?action=listar`)
@@ -68,7 +55,7 @@ function listarProductos() {
             return response.json();
         })
         .then(data => {
-            mostrarDatos(data);
+            //mostrarDatos(data);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -372,9 +359,21 @@ function agregarAlCarrito(producto) {
   mostrarCarrito();
 }
 
-// Función para mostrar el carrito (estilo mostrarProducto)
+// Función para mostrar el carrito
 function mostrarCarrito() {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  
+  // Seleccionar elementos del DOM
+  const productosCarrito = document.getElementById('productosCarrito');
+  const carritoVacio = document.getElementById('carritoVacio');
+  const totalCarrito = document.getElementById('totalCarrito');
+  const itemCarritoTemplate = document.getElementById('itemCarritoTemplate');
+  
+  // Verificar que los elementos existen
+  if (!productosCarrito || !totalCarrito || !itemCarritoTemplate) {
+    console.error('No se encontraron los elementos del carrito en el DOM');
+    return;
+  }
   
   // Eliminar todos los items anteriores excepto el template y el mensaje vacío
   const itemsAnteriores = productosCarrito.querySelectorAll('.item-carrito:not(#itemCarritoTemplate)');
@@ -382,13 +381,13 @@ function mostrarCarrito() {
   
   // Si el carrito está vacío
   if (carrito.length === 0) {
-    carritoVacio.style.display = 'block';
+    if (carritoVacio) carritoVacio.style.display = 'block';
     totalCarrito.textContent = '0.00€';
     return;
   }
   
   // Ocultar mensaje de carrito vacío
-  carritoVacio.style.display = 'none';
+  if (carritoVacio) carritoVacio.style.display = 'none';
   
   // Calcular total
   let total = 0;
@@ -402,13 +401,14 @@ function mostrarCarrito() {
     const nuevoItem = itemCarritoTemplate.cloneNode(true);
     nuevoItem.id = ''; // Quitar el id del template
     nuevoItem.style.display = 'flex'; // Mostrar el item
+    nuevoItem.classList.add('item-carrito-visible'); // Clase para identificarlo
     
     // Rellenar los datos
     nuevoItem.querySelector('.img-item-carrito').src = item.imagen;
     nuevoItem.querySelector('.img-item-carrito').alt = item.nombre;
     nuevoItem.querySelector('.nombre-item-carrito').textContent = item.nombre;
     nuevoItem.querySelector('.cantidad-item-carrito').textContent = `${obtenerTraduccion('cantidad')}: ${item.cantidad}`;
-    nuevoItem.querySelector('.item-precio').textContent = `${item.precio}€`;
+    nuevoItem.querySelector('.item-precio').textContent = `${item.precio.toFixed(2)}€`;
     
     // Agregar evento al botón eliminar
     const btnEliminar = nuevoItem.querySelector('.btn-eliminar');
@@ -423,6 +423,8 @@ function mostrarCarrito() {
   
   // Actualizar total
   totalCarrito.textContent = total.toFixed(2) + '€';
+  
+  console.log('Total del carrito:', total); // Para debug
 }
 
 // Llamar a mostrarCarrito cuando se cargue la página
